@@ -1,0 +1,60 @@
+@startuml
+class StartingPanel{}
+
+StartingPanel *--"creates" ElementPanel
+class ElementPanel {
+    List<Element> elements
+    Random random
+    elements = earth, water, fire, air
+    --
+    void createElements()
+    void paintComponent(Graphics g)
+    void simulationUpdate()
+    void simulationElementsCollide()
+    void simulationElementsMove()
+    void run()
+    void simulationStart()
+}
+
+class Element {
+    int x
+    int y
+    Color color
+    --
+    void move()
+    void draw(Graphics g)
+    void collide()
+}
+
+ElementPanel  *-- "contains" Element
+
+Element <|-- fire
+Element <|-- air
+Element <|-- earth
+Element <|-- water
+
+class fire {
+    x = random
+    y = random
+    color = RED
+}
+
+class air {
+    x = random
+    y = random
+    color = GRAY
+}
+
+class earth{
+    x = random
+    y = random
+    color = GREEN
+}
+
+class water {
+    x = random
+    y = random
+    color = BLUE
+}
+
+@enduml

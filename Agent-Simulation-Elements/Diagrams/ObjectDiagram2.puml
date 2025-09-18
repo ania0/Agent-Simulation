@@ -1,0 +1,59 @@
+@startuml
+
+class ElementPanel {
+    List<Element> elements
+    Random random
+    JButton button1
+    elements = earth1, water1, fire1, air1
+    --
+    void createElements()
+    void paintComponent(Graphics g)
+    void simulationUpdate()
+    void simulationElementsCollide()
+    void simulationElementsMove()
+    void run()
+    void simulationStart()
+}
+
+class Element {
+    int x
+    int y
+    Color color
+    --
+    void move()
+    void draw(Graphics g)
+    void collide()
+}
+
+ElementPanel  *-- "*" Element : contains
+
+Element <|-- fire1
+Element <|-- air1
+Element <|-- earth1
+Element <|-- water1
+
+class fire1 {
+    x = random
+    y = random
+    color = RED
+}
+
+class air1 {
+    x = random
+    y = random
+    color = GRAY
+}
+
+class earth1 {
+    x = random
+    y = random
+    color = GREEN
+}
+
+class water1 {
+    x = random
+    y = random
+    color = BLUE
+}
+
+@enduml

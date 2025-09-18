@@ -1,0 +1,36 @@
+@startuml
+participant GUI
+participant "Main Program" as Main
+participant "Loop" as Loop
+participant "Random Generator" as Random
+
+activate GUI
+
+GUI -> Main: Draw elements
+activate Main
+Main --> GUI: Elements drawn
+
+GUI --> Loop: Start loop after t seconds
+activate Loop
+
+
+    loop for each element i in list
+        Loop -> Loop: Iterate with i
+        Loop -> Random: Generate random steps for element i
+        activate Random
+        Random --> Loop: Random steps for element i
+        deactivate Random
+
+        Loop --> GUI: Update position of element i
+        GUI --> Loop: Return updated element i to screen
+
+        Loop -> Loop: i = i + 1
+    end
+
+
+Loop --> GUI: End loop
+deactivate Loop
+
+GUI --> Main: Updated elements displayed
+deactivate Main
+@enduml

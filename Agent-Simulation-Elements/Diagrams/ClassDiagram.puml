@@ -1,0 +1,97 @@
+@startuml
+
+class Element {
+    -Color color
+    -int x
+    -int y
+    -int size
+    -Random random
+    -double moveStep
+    -double moveStepRandom
+    -double rotationStep
+    -double moveDirection
+    -int radius
+    +Element(int x, int y, Color color)
+    +void draw(Graphics g)
+    +void move(double delta)
+    +int collide(Element element)
+}
+
+class Air {
+    +Air(int x, int y)
+    +int collide(Element element)
+}
+
+class Earth {
+    +Earth(int x, int y)
+    +int collide(Element element)
+}
+
+class Fire {
+    +Fire(int x, int y)
+    +int collide(Element element)
+}
+
+class Water {
+    +Water(int x, int y)
+    +int collide(Element element)
+}
+
+class ElementPanel {
+    -List<Element> elements
+    -Random random
+    -JButton button1
+    -int initialElementCountFire
+    -int initialElementCountWater
+    -int initialElementCountAir
+    -int initialElementCountEarth
+    -int framerate
+    -double delta
+    -int frameTime
+    -JLabel whoWon
+    -ScheduledExecutorService scheduler
+    +ElementPanel(int waterCount, int airCount, int fireCount, int earthCount)
+    +void simulationStart()
+    +void startSpawningAdditionalElements()
+    +void spawnAdditionalElements()
+    +void createElements()
+    +void simulationElementsMove()
+    +void simulationElementsCollide()
+    +void simulationUpdate()
+    +void paintComponent(Graphics g)
+}
+
+class Main {
+    {static} int screenSizeX
+    {static} int screenSizeY
+    {static} void main(String[] args)
+}
+
+class StartingPanel {
+    -JPanel JPanel
+    -JLabel howManyUnitsOf
+    -JSlider airSlider
+    -JSlider waterSlider
+    -JSlider earthSlider
+    -JSlider fireSlider
+    -JLabel waterLabel
+    -JLabel earthLabel
+    -JLabel fireLabel
+    -JLabel airLabel
+    -JButton goToSimulation
+    -JLabel fireNoLbl
+    -JLabel waterNoLbl
+    -JLabel earthNoLbl
+    -JLabel airNoLbl
+    +StartingPanel(JFrame frame)
+}
+
+Element <|-- Air
+Element <|-- Earth
+Element <|-- Fire
+Element <|-- Water
+Main o-- StartingPanel
+StartingPanel o-- ElementPanel
+ElementPanel o-- Element
+
+@enduml

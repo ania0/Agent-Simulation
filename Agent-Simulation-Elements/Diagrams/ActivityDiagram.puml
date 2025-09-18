@@ -1,0 +1,20 @@
+@startuml
+
+:Place elements on map;
+
+while (Simulation running?) is (yes)
+    if (is in Turn?) then (yes)
+        :Move;
+        :Check for collisions;
+        if (collision detected?) then (yes)
+            :Handle collision;
+        endif
+    endif
+    :Wait for next turn;
+endwhile
+
+
+
+stop
+
+@enduml

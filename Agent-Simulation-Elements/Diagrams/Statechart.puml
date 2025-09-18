@@ -1,0 +1,31 @@
+@startuml
+
+[*] --> Created : Object Created
+
+state Created {
+    Created --> Existing : Object Exists
+}
+
+state Existing {
+    Existing --> Moving : Object Starts Moving
+}
+
+state Moving {
+    Moving --> Collision : Object Collides
+    Moving --> NoCollision : Object Doesn't Collide
+}
+
+state Collision {
+    Collision --> Destroyed : Object Destroyed
+}
+
+state NoCollision {
+    NoCollision --> Moving : Object Continues Moving
+}
+
+state Destroyed {
+
+}
+
+
+@enduml
